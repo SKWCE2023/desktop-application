@@ -1,11 +1,13 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, PhotoImage
 import requests
 from db import fetch_login_history
 
 class LoginHistory:
     def __init__(self, root):
         self.root = root
+        img = PhotoImage(file='assets/images/Logo.png')
+        self.root.iconphoto(False, img)
         self.root.title("Login History")
         self.root.geometry("800x600")
         self.search_var = tk.StringVar()

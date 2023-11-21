@@ -12,7 +12,8 @@ import requests
 from db import logout
 
 class DashboardFrame:
-    def __init__(self, root, user_info):
+    def __init__(self, root, user_info, on_destroy):
+        self.on_destroy = on_destroy
         self.user_type = str(user_info['role'])
         self.user_frames = {
             "1": AssistantFrame,
@@ -29,13 +30,15 @@ class DashboardFrame:
         self.dashboard_frame = ttk.Frame(self.root)
         self.dashboard_frame.pack(fill=tk.BOTH, expand=True)
         self.display_user_info()
-        self.session_timer = 10 * 60
-        self.warning_time = 5 * 60
+        self.session_timer = 2 * 60
+        self.warning_time = 1 * 60
         self.create_timer_label()
         self.start_timer()
         ttk.Button(self.dashboard_frame, text="Logout", command=self.user_logout).pack(pady=10)
 
     def get_image_path(self):
+        if self.user_type == "2":
+            return 'assets/images/laborant_2.png'
         if self.user_type == "3":
             return 'assets/images/accountant.jpeg'
         elif self.user_type == "4":
@@ -69,7 +72,7 @@ class DashboardFrame:
         timer_text = f"Session ends: {minutes:02d}:{seconds:02d}"
         self.timer_label["text"] = timer_text
         if self.remaining_time == self.warning_time:
-            messagebox.showinfo("Warning: 5 minutes left!", "Your session will expire in 5 minutes")
+            messagebox.showinfo("Warning: 1 minutes left", "Your session will expire in 1 minute")
         self.remaining_time -= 1
         if self.remaining_time >= 0:
             self.root.after(1000, self.update_timer_display)
@@ -81,7 +84,7 @@ class DashboardFrame:
             response = logout()
             self.user_frame.destroy()
             self.dashboard_frame.destroy()
-            create_login_frame(self.root, False, False)
+            self.on_destroy(self.root)
         except requests.exceptions.RequestException as e:
             messagebox.showerror("Request Error", "Error in the request")
 
@@ -93,5 +96,3 @@ class DashboardFrame:
         user_frame_class = self.user_frames.get(self.user_type, AssistantFrame)
         user_frame = user_frame_class(self.user_frame)
         user_frame.pack()
-
-        

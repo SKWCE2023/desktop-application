@@ -1,7 +1,6 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, PhotoImage
 from login import LoginFrame
-from utils.utils import create_login_frame
 
 class App:
     def __init__(self, root):
@@ -14,9 +13,11 @@ class App:
         self.style = ttk.Style()
         self.style.configure("TFrame", background="white")
         self.style.configure("TLabel", background="white", font=('Helvetica', 10))
-        create_login_frame(self.root, self.showCaptcha, self.locked)
+        LoginFrame(self.root, self.showCaptcha, self.locked)
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
+    img = PhotoImage(file='assets/images/Logo.png')
+    root.iconphoto(False, img)
     root.mainloop()
