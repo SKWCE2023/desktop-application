@@ -7,7 +7,7 @@ class App:
         self.showCaptcha = False
         self.locked = False
         self.root = root
-        self.root.title("World Championship")
+        self.root.title("Shubhs")
         self.root.geometry("800x600")
         self.root.configure(bg="white")
         self.style = ttk.Style()

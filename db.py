@@ -8,7 +8,7 @@ def login(data):
     response = requests.post(url, data=data)
     parsed_response = response.json()
     if response.status_code == 200:
-        result["data"] = parsed_response.get('data')[0]
+        result["data"] = parsed_response.get('data')
     else:
         result["error_message"] = parsed_response.get('message')
     return result
@@ -55,4 +55,32 @@ def create_order(data):
         result["data"] = parsed_response
     else:
         result["error_message"] = parsed_response.get('message')
+    return result
+
+def fetch_all_services():
+    result = {}
+    url = f"{base_path}get_services/"
+    try:
+        response = requests.get(url)
+        parsed_response = response.json()
+        if response.status_code == 200:
+            result["data"] = parsed_response.get('data')
+        else:
+            result["error_message"] = parsed_response.get('message')
+    except requests.exceptions.RequestException as e:
+        result["error_message"] = f"Error in the request: {e}"
+    return result
+
+def fetch_customers_by_name(name = None):
+    result = {}
+    url = f"{base_path}get_customers_by_name/?search={name}"
+    try:
+        response = requests.get(url)
+        parsed_response = response.json()
+        if response.status_code == 200:
+            result["data"] = parsed_response.get('data')
+        else:
+            result["error_message"] = parsed_response.get('message')
+    except requests.exceptions.RequestException as e:
+        result["error_message"] = f"Error in the request: {e}"
     return result

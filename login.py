@@ -63,6 +63,9 @@ class LoginFrame:
                 return
             username = self.username_entry.get()
             password = self.password_entry.get()
+            if not username or not password:
+                messagebox.showerror("Error", "Please fill in all the fields.")
+                return
             data = {'username': username, 'password': password}
             response = login(data)
             if response.get("error_message"):
