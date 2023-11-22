@@ -16,7 +16,7 @@ class LoginFrame:
         self.create_app_icon_frame()
         self.create_login_frame()
         if self.logout_lock:
-            messagebox.showinfo("Login Locked", "Please login after 1 minute.")
+            messagebox.showinfo("Login Locked", "You can login after 1 minute.")
             self.lock_account(60000)
 
     def create_app_icon_frame(self):
@@ -69,9 +69,13 @@ class LoginFrame:
             data = {'username': username, 'password': password}
             response = login(data)
             if response.get("error_message"):
+                if self.showCaptcha:
+                    self.generate_captcha()
+                    self.lock_account(10000)
+                else:
+                    self.create_captcha()
                 self.showCaptcha = True
                 messagebox.showerror("Login Failed", response["error_message"])
-                self.create_captcha()
             else:
                 self.showCaptcha = False
                 self.show_dashboard(response['data'])
