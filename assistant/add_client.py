@@ -20,7 +20,7 @@ class AddClientFrame:
             key = label_text.lower().replace(' ', '_')
             label = ttk.Label(self.frame, text=label_text)
             label.grid(row=i, column=0, padx=10, pady=10, sticky=tk.W)
-            entry = ttk.Entry(self.frame)
+            entry = ttk.Entry(self.frame, font=('Helvetica 10'))
             entry.grid(row=i, column=1, padx=10, pady=10)
             if key == 'date_of_birth':
                 entry.insert(0, 'DD/MM/YYYY')
@@ -29,9 +29,7 @@ class AddClientFrame:
                 entry.bind("<FocusOut>", self.on_entry_focus_out)
             self.entries[key] = entry
         add_button = ttk.Button(self.frame, text="Add Client", command=self.add_client)
-        add_button.grid(row=len(labels), column=0, columnspan=2, pady=10)
-        self.result_label = ttk.Label(self.frame, text="")
-        self.result_label.grid(row=len(labels) + 1, column=0, columnspan=2, pady=10)
+        add_button.grid(row=len(labels), column=0, columnspan=2, pady=14)
 
     def add_client(self):
         try:

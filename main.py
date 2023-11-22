@@ -12,7 +12,10 @@ class App:
         self.root.configure(bg="white")
         self.style = ttk.Style()
         self.style.configure("TFrame", background="white")
-        self.style.configure("TLabel", background="white", font=('Helvetica', 10))
+        self.style.configure("TLabel", background="white", font=('Helvetica', 12))
+        self.style.configure("TCheckbutton", background="white", font=('Helvetica', 8))
+        self.style.configure('TButton', font=('Helvetica', 12), borderwidth = '4', ipadx=15, ipady=15)
+        self.style.map('TButton', foreground = [('active', '!disabled', 'green')])
         LoginFrame(self.root, self.showCaptcha, self.locked)
 
 if __name__ == "__main__":

@@ -32,10 +32,10 @@ class LoginFrame:
         self.login_frame = ttk.Frame(self.root, padding=(20, 20))
         self.login_frame.pack(padx=10, pady=10)
         ttk.Label(self.login_frame, text="Username:", style="TLabel").grid(row=0, column=0, sticky="e", pady=10)
-        self.username_entry = ttk.Entry(self.login_frame)
+        self.username_entry = ttk.Entry(self.login_frame, font=('Helvetica 10'))
         self.username_entry.grid(row=0, column=1, pady=10)
         ttk.Label(self.login_frame, text="Password:", style="TLabel").grid(row=1, column=0, sticky="e", pady=10)
-        self.password_entry = ttk.Entry(self.login_frame, show="*")
+        self.password_entry = ttk.Entry(self.login_frame, show="*", font=('Helvetica 10'))
         self.password_entry.grid(row=1, column=1, pady=10)
         self.show_password_var = tk.IntVar()
         ttk.Checkbutton(
@@ -92,7 +92,7 @@ class LoginFrame:
     def generate_captcha(self):
         captcha_text = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=4))
         self.captcha_var.set(captcha_text)
-        captcha_image = Image.new('RGB', (150, 50), color=(100, 100, 100))
+        captcha_image = Image.new('RGB', (150, 50), color=(150, 150, 150))
         captcha_draw = ImageDraw.Draw(captcha_image)
         x = 30
         for char in captcha_text:
