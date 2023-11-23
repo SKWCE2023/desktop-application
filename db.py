@@ -48,7 +48,7 @@ def create_customer(data):
 
 def create_order(data):
     result = {}
-    url = f"{base_path}create_customer/"
+    url = f"{base_path}create_order/"
     response = requests.post(url, data=data)
     parsed_response = response.json()
     if response.status_code == 201:
@@ -83,4 +83,17 @@ def fetch_customers_by_name(name = None):
             result["error_message"] = parsed_response.get('message')
     except requests.exceptions.RequestException as e:
         result["error_message"] = f"Error in the request: {e}"
+    return result
+
+def fetch_last_order_id():
+    result = {}
+    url = f"{base_path}get_last_order/"
+    response = requests.get(url)
+    parsed_response = response.json()
+    if response.status_code == 200:
+        result["data"] = parsed_response.get('data') + 1
+    elif response.status_code == 404:
+        result["data"] = 1
+    else:
+        result["error_message"] = parsed_response.get('message')
     return result

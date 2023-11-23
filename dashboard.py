@@ -94,5 +94,5 @@ class DashboardFrame:
         for widget in self.user_frame.winfo_children():
             widget.destroy()
         user_frame_class = self.user_frames.get(self.user_type, AssistantFrame)
-        user_frame = user_frame_class(self.user_frame)
+        user_frame = user_frame_class(self.user_frame, self.user_info)
         user_frame.pack()

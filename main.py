@@ -4,8 +4,6 @@ from login import LoginFrame
 
 class App:
     def __init__(self, root):
-        self.showCaptcha = False
-        self.locked = False
         self.root = root
         self.root.title("Shubhs")
         self.root.geometry("800x600")
@@ -16,7 +14,7 @@ class App:
         self.style.configure("TCheckbutton", background="white", font=('Helvetica', 8))
         self.style.configure('TButton', font=('Helvetica', 12), borderwidth = '4', ipadx=15, ipady=15)
         self.style.map('TButton', foreground = [('active', '!disabled', 'green')])
-        LoginFrame(self.root, self.showCaptcha, self.locked)
+        LoginFrame(self.root, False, False, False)
 
 if __name__ == "__main__":
     root = tk.Tk()
