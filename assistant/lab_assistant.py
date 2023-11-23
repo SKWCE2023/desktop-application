@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from .add_client import AddClientFrame
 
 class AssistantFrame(ttk.Frame):
     def __init__(self, master=None, **kwargs):
@@ -13,5 +12,4 @@ class AssistantFrame(ttk.Frame):
         pass
     
     def add_new_client(self):
-        add_client_window = tk.Toplevel(self)
-        add_client_frame = AddClientFrame(add_client_window)
+        pass

@@ -56,8 +56,8 @@ class DashboardFrame:
         circular_image.paste(original_image, mask=mask)
         self.circular_image_tk = ImageTk.PhotoImage(circular_image)
         ttk.Label(self.dashboard_frame, image=self.circular_image_tk).pack(pady=10)
-        ttk.Label(self.dashboard_frame, text=f'{self.user_info['first_name']} {self.user_info['last_name']}', font=('Helvetica', 16)).pack()
-        ttk.Label(self.dashboard_frame, text=f'Role: {constants.user_roles[self.user_type]}', font=('Helvetica', 12)).pack()
+        ttk.Label(self.dashboard_frame, text=f"{self.user_info['first_name']} {self.user_info['last_name']}", font=('Helvetica', 16)).pack()
+        ttk.Label(self.dashboard_frame, text=f"Role: {constants.user_roles[self.user_type]}", font=('Helvetica', 12)).pack()
 
     def create_timer_label(self):
         self.timer_label = ttk.Label(self.dashboard_frame, text='', font=('Helvetica', 10))
