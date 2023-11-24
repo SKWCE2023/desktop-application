@@ -10,6 +10,7 @@ class LoginHistory:
         self.root.iconphoto(False, img)
         self.root.title("Login History")
         self.root.geometry("800x600")
+        self.root.minsize("800","600")
         self.search_var = tk.StringVar()
         self.sort_order_var = tk.StringVar(value="Ascending") 
         search_frame = ttk.Frame(self.root)

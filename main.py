@@ -9,6 +9,7 @@ class App:
         self.root = root
         self.root.title("Shubhs")
         self.root.geometry("800x600")
+        self.root.minsize("800","600")
         self.root.configure(bg="white")
         self.style = ttk.Style()
         self.style.configure("TFrame", background="white")
