@@ -21,7 +21,7 @@ class CreateOrderFrame:
         self.user_info = user_info
         self.root.title("Create New Order")
         self.root.geometry("800x600")
-        self.root.geometry("800x600")
+        self.root.minsize("800","600")
         self.root.configure(bg="white")
         style = ttk.Style()
         self.customers = []

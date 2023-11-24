@@ -10,6 +10,7 @@ class AddClientFrame:
         self.root.iconphoto(False, img)
         self.root.title("Add New Client")
         self.root.geometry("800x600")
+        self.root.minsize("800","600")
         self.root.configure(bg="white")
         ttk.Label(self.root, text="Please fill the following data").pack(padx=10, pady=10)
         self.frame = ttk.Frame(self.root, padding=(20, 20))
