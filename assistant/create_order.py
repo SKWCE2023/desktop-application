@@ -30,6 +30,7 @@ class CreateOrderFrame:
         self.quantity_var = tk.IntVar()
         self.barcode_var = tk.StringVar()
         self.order_price_var = tk.StringVar()
+        ttk.Label(self.root, text="Please fill the following data").pack(padx=10, pady=10)
         self.order_frame = ttk.Frame(self.root, padding=(20, 20))
         self.order_frame.pack(padx=10, pady=10)
         self.fetch_last_order_id()
@@ -77,7 +78,7 @@ class CreateOrderFrame:
         self.service_combobox.bind("<<ComboboxSelected>>", self.update_cost_based_on_selected_service)
         ttk.Label(self.order_frame, text="Order Cost:").grid(row=4, column=0, padx=10, pady=10)
         ttk.Entry(self.order_frame, textvariable=self.order_price_var, state='readonly', width = 37, font = ("Helvetica", 10)).grid(row=4, column=1, padx=10, pady=10)
-        ttk.Button(self.order_frame, text="Generate Order", command=self.generate_order).grid(row=5, column=1, pady=10)
+        ttk.Button(self.order_frame, text="Generate Order", command=self.generate_order).grid(row=5, columnspan=2, pady=10)
 
     def filter_customers(self, event):
         filter_text = self.selected_customer_var.get().strip()

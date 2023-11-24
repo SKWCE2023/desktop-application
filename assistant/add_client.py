@@ -20,7 +20,7 @@ class AddClientFrame:
             key = label_text.lower().replace(' ', '_')
             label = ttk.Label(self.frame, text=label_text)
             label.grid(row=i, column=0, padx=10, pady=10, sticky=tk.W)
-            entry = ttk.Entry(self.frame, font=('Helvetica 10'))
+            entry = ttk.Entry(self.frame, width = 37, font = ("Helvetica", 10))
             entry.grid(row=i, column=1, padx=10, pady=10)
             if key == 'date_of_birth':
                 entry.insert(0, 'DD/MM/YYYY')
@@ -33,7 +33,11 @@ class AddClientFrame:
 
     def add_client(self):
         try:
-            data = {key: entry.get() for key, entry in self.entries.items()}
+            for key, entry in self.entries.items():
+                if not entry.get():
+                    messagebox.showerror("Error", "Please fill in all the fields.")
+                    return
+                data[key] = entry.get()
             response = create_customer(data)
             if response.get("error_message"):
                 messagebox.showerror("Operation Failed", "Failed to add customer. Please try again")
