@@ -87,7 +87,7 @@ def fetch_customers_by_name(name = None):
 
 def fetch_last_order_id():
     result = {}
-    url = f"{base_path}get_last_order/"
+    url = f"{base_path}get_last_order"
     response = requests.get(url)
     parsed_response = response.json()
     if response.status_code == 200:
