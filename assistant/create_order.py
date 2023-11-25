@@ -45,7 +45,7 @@ class CreateOrderFrame:
             else:
                 self.last_order_id = tk.IntVar(value=response['data'])
         except requests.exceptions.RequestException as e:
-            result["error_message"] = f"Error in the request: {e}"
+            print(f"Error in the request: {e}")
 
     def create_services_values(self):
         self.service_names = []
@@ -55,7 +55,7 @@ class CreateOrderFrame:
             for row in response['data']:
                 self.service_names.append(f"{row['service']} ({row['code']})")
         except requests.exceptions.RequestException as e:
-            result["error_message"] = f"Error in the request: {e}"
+            print(f"Error in the request: {e}")
 
     def create_barcode_widget(self):
         self.barcode_var.set(f"{self.last_order_id.get()}{datetime.now().strftime('%Y%m%d')}{random.randint(100000, 999999)}")
