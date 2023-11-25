@@ -1,10 +1,10 @@
 import requests
 
-base_path = "http://127.0.0.1:8000/api/"
+base_path = "http://127.0.0.1:5000/api/"
 
 def login(data):
     result = {}
-    url = f"{base_path}login/"
+    url = f"{base_path}login"
     response = requests.post(url, data=data)
     parsed_response = response.json()
     if response.status_code == 200:
@@ -14,14 +14,14 @@ def login(data):
     return result
 
 def logout():
-    url = f"{base_path}logout/"
+    url = f"{base_path}logout"
     response = requests.get(url)
     parsed_response = response.json()
     return parsed_response
 
 def fetch_login_history(username=None, sort_order='Ascending'):
     result = {}
-    url = f"{base_path}login_history/"
+    url = f"{base_path}login_history"
     if username is not None:
         url += f"?search={username}&ordering={sort_order}"
     try:
@@ -37,7 +37,7 @@ def fetch_login_history(username=None, sort_order='Ascending'):
 
 def create_customer(data):
     result = {}
-    url = f"{base_path}create_customer/"
+    url = f"{base_path}create_customer"
     response = requests.post(url, data=data)
     parsed_response = response.json()
     if response.status_code == 201:
@@ -48,7 +48,7 @@ def create_customer(data):
 
 def create_order(data):
     result = {}
-    url = f"{base_path}create_customer/"
+    url = f"{base_path}create_order"
     response = requests.post(url, data=data)
     parsed_response = response.json()
     if response.status_code == 201:
@@ -59,7 +59,7 @@ def create_order(data):
 
 def fetch_all_services():
     result = {}
-    url = f"{base_path}get_services/"
+    url = f"{base_path}get_services"
     try:
         response = requests.get(url)
         parsed_response = response.json()
@@ -73,7 +73,7 @@ def fetch_all_services():
 
 def fetch_customers_by_name(name = None):
     result = {}
-    url = f"{base_path}get_customers_by_name/?search={name}"
+    url = f"{base_path}get_customers_by_name?search={name}"
     try:
         response = requests.get(url)
         parsed_response = response.json()
